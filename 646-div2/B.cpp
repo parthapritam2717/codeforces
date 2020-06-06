@@ -48,16 +48,50 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-        int n,m;
-        cin>>n>>m;//m is breadth
-        int ans=0;
-        if(m%2==0){
-            ans=n*(m/2);
-        }
-        else{
-            ans=n*(m/2)+ceil((double)n/2);
-        }
-        cout<<ans<<"\n";
+       string s;
+       cin>>s;
+       if(s.length()<=2){
+           cout<<0<<endl;
+       }
+       else{
+           //count number of zeros in between 1th index an l-1
+           int c=0;
+           int l=s.length();
+           int x1=0,x2=0,x3=0,x4=0;
+           //00000...000
+           for(int i=0;i<l;++i){
+               if(s[i]!='0'){
+                   x1++;
+               }
+           }
+           //111....111
+           for(int i=0;i<l;++i){
+               if(s[i]!='1'){
+                   x2++;
+               }
+           }
+           //all convert to 0
+           //0000.....1
+           for(int i=0;i<l-1;++i){
+               if(s[i]!='0'){
+                   x3++;
+               }
+           }
+           if(s[l-1]=='0' && x3>0)
+                x3++;
+            //1.....0
+           for(int i=1;i<l;++i){
+               if(s[i]!='0'){
+                   x4++;
+               }
+           }
+           if(x4>0 && s[0]!='1')
+                x4++;
+           //cout<<x1<<" "<<x2<<" "<<x3<<" "<<x4<<endl;
+           int ans=min({x1,x2,x3,x4});
+           cout<<ans<<endl;
+           
+       }
     }
     return 0;
 

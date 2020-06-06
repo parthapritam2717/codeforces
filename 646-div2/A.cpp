@@ -48,16 +48,54 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-        int n,m;
-        cin>>n>>m;//m is breadth
-        int ans=0;
-        if(m%2==0){
-            ans=n*(m/2);
-        }
-        else{
-            ans=n*(m/2)+ceil((double)n/2);
-        }
-        cout<<ans<<"\n";
+       int n,x;
+       cin>>n>>x;
+       int even=0;
+       int odd=0;
+       for(int i=0;i<n;++i){
+           int item;
+           cin>>item;
+           if(item%2==0)
+                even++;
+            else
+                odd++;
+       }
+       if(x%2==0){
+           int y=0;
+           if(odd>0 && odd%2==0 && odd<=x){
+               y+=(odd-1);
+           }
+           else if(odd%2==1 && odd<=x){
+               y+=odd;
+           }
+           else if(odd>x){
+               y+=(x-1);
+           }
+           if(x-y<=even && y>0){
+               cout<<"Yes"<<endl;
+           }
+           else{
+               cout<<"No"<<endl;
+           }
+       }
+       else{
+           int y=0;
+           if(odd>0 && odd%2==0 && odd<=x){
+               y+=(odd-1);
+           }
+           else if(odd%2==1 && odd<=x){
+               y+=(odd);
+           }
+           else if(odd>x){
+               y+=x;
+           }
+           if(x-y<=even && y>0){
+               cout<<"Yes"<<endl;
+           }
+           else{
+               cout<<"No"<<endl;
+           }
+       } 
     }
     return 0;
 
